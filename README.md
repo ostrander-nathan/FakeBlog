@@ -19,7 +19,6 @@ This exercise will help the students understand the underpinnings of Database de
 3. Create C#/Entity models using your ERD
 
 ### Fake Blog ERD
-
-[ERD goes here]
+![Image alt text](./erdplus-diagram (1).png)
 
 ## Part 2 - Implement the rest of the features
