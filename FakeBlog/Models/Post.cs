@@ -11,8 +11,11 @@ namespace FakeBlog.Models
         [Key]
         public int PostId { get; set; }
 
+        [Required]
         public string  Name { get; set; }
 
         public List<Draft> Drafts { get; set; }
-    }
+
+        public ApplicationUser Owner { get; set; }
+}
 }
