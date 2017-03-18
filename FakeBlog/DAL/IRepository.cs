@@ -11,19 +11,24 @@ namespace FakeBlog.DAL
     {
         // List of methods to help deliver features
         // Create
-        void AddPost(string name, ApplicationUser owner);
-       
+        void AddPostUser(string name, ApplicationUser owner);
+        void AddPost(int postId);
+
 
         // Read
-        List<Post> GetPost(int postId);
- 
+        Post GetPost(int postId);
+        Post GetPost(int postId, string name);
+
 
         // Update
+        bool UpdatePost(int postId, string content);
         bool UpdatePost(string postId);
+        bool AttachUser(string userId, int postId);
   
 
         // Delete
-        bool RemovePost(string postId);
+        bool RemoveUserFromPost(string userId);
+        bool RemovePost(int postId);
 
     }
 }

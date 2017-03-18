@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using FakeBlog.Models;
+using System.Linq;
 
 namespace FakeBlog.DAL
 {
     public class FakeBlogRepository : IRepository
     {
+        public FakeBlogContext Context { get; set; }
+
         public FakeBlogRepository()
         {
             Context = new FakeBlogContext();
@@ -16,7 +19,11 @@ namespace FakeBlog.DAL
             Context = context;
         }
 
-        public FakeBlogContext Context { get; set; }
+        public void AddPost(int postId)
+        {
+
+            throw new NotImplementedException();
+        }
 
         public void AddPost(string name, ApplicationUser owner)
         {
@@ -25,12 +32,42 @@ namespace FakeBlog.DAL
             Context.SaveChanges();
         }
 
-        public List<Post> GetPost(int postId)
+        public void AddPostUser(string name, ApplicationUser owner)
         {
             throw new NotImplementedException();
         }
 
-        public bool RemovePost(string postId)
+        public bool AttachUser(string userId, int postId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Post GetPost(int postId, string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Post GetPost(int postId)
+        {
+            Post found_post = Context.Posts.FirstOrDefault(b => b.PostId == postId); // returns null if nothing is found
+            return found_post;
+            throw new NotImplementedException();
+        }
+
+        public bool RemovePost(int postId)
+        {
+            Post found_post = GetPost(postId);
+            if (found_post != null)
+            {
+                Context.Posts.Remove(found_post);
+                Context.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+
+        public bool RemoveUserFromPost(string userId)
         {
             throw new NotImplementedException();
         }
@@ -38,6 +75,11 @@ namespace FakeBlog.DAL
         public bool UpdatePost(string postId)
         {
             throw new NotImplementedException();
+        }
+
+        public bool UpdatePost(int postId, string content)
+        {
+            Context.Posts.Add
         }
     }
 }
