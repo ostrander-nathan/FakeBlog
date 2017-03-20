@@ -46,6 +46,16 @@ namespace FakeBlog.Tests.DAL
         }
 
         [TestMethod]
+        public void EnsureICanCreateInstance()
+        {
+            FakeBlogRepository repo = new FakeBlogRepository();
+            Assert.IsNotNull(repo);
+        
+        }
+
+
+
+        [TestMethod]
         public void EnsureICanAddAPost()
         {
             // Arrange
@@ -85,14 +95,21 @@ namespace FakeBlog.Tests.DAL
 
         }
         [TestMethod]
-        public void EnsureICanUpdatePost()
+        public void EnsureICanEditPost()
         {
             // Arrange
+            fake_post_table.Add(new Post { PostId = 1, Name = "My Post", Owner = sally });
+            CreateFakeDatabase();
 
             //Act
+            string expected_post_name = "Our Post";
+            repo.UpdatePost(1,expected_post_name);
+            string actual_post_name = repo.GetPost(1).Name;
 
             //Assert
-        
+            Assert.AreEqual(expected_post_name, actual_post_name);
+            fake_context.Verify(x => x.SaveChanges(), Times.Once());
+            
 
         }
     }

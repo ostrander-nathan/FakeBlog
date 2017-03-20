@@ -51,7 +51,6 @@ namespace FakeBlog.DAL
         {
             Post found_post = Context.Posts.FirstOrDefault(b => b.PostId == postId); // returns null if nothing is found
             return found_post;
-            throw new NotImplementedException();
         }
 
         public bool RemovePost(int postId)
@@ -77,9 +76,14 @@ namespace FakeBlog.DAL
             throw new NotImplementedException();
         }
 
-        public bool UpdatePost(int postId, string content)
+        public void UpdatePost(int postId, string newname)
         {
-            Context.Posts.Add
+            Post found_post = GetPost(postId);
+            if(found_post != null)
+            {
+                found_post.Name = newname;
+                Context.SaveChanges();
+            }
         }
     }
 }

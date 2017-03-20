@@ -21,7 +21,7 @@ namespace FakeBlog.DAL
 
 
         // Update
-        bool UpdatePost(int postId, string content);
+        void UpdatePost(int postId, string newname);
         bool UpdatePost(string postId);
         bool AttachUser(string userId, int postId);
   
